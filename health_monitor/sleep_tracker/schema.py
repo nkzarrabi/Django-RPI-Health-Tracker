@@ -1,3 +1,4 @@
+from datetime import timedelta
 import graphene
 from graphene_django.types import DjangoObjectType
 from .models import SleepData
@@ -17,19 +18,18 @@ class CreateSleepData(graphene.Mutation):
     class Arguments:
         start_time = graphene.DateTime(required=True)
         end_time = graphene.DateTime(required=True)
-        deep_sleep_duration = graphene.Int(required=True)
-        light_sleep_duration = graphene.Int(required=True)
+        deep_sleep_duration = graphene.Int(required=True)  # Expected as minutes
+        light_sleep_duration = graphene.Int(required=True)  # Expected as minutes
 
     sleep_data = graphene.Field(SleepDataType)
 
     def mutate(self, info, start_time, end_time, deep_sleep_duration, light_sleep_duration):
-        sleep_score = calculate_sleep_score(deep_sleep_duration, light_sleep_duration)
         sleep_data = SleepData(
             start_time=start_time,
             end_time=end_time,
-            deep_sleep_duration=deep_sleep_duration,
-            light_sleep_duration=light_sleep_duration,
-            sleep_score=sleep_score
+            deep_sleep_duration=timedelta(minutes=deep_sleep_duration),
+            light_sleep_duration=timedelta(minutes=light_sleep_duration),
+            sleep_score=calculate_sleep_score(deep_sleep_duration, light_sleep_duration)
         )
         sleep_data.save()
         return CreateSleepData(sleep_data=sleep_data)
