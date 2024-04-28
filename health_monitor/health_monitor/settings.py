@@ -141,3 +141,4 @@ DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 GRAPHENE = {
     'SCHEMA': 'sleep_tracker.schema.schema'
 }
+SESSION_COOKIE_SECURE = True
