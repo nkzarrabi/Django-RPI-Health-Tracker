@@ -11,3 +11,13 @@ export const GET_SLEEP_DATA = gql`
     }
   }
 `;
+export const GET_SLEEPWALKING_EVENTS = gql`
+  query GetSleepwalkingEvents {
+    allSleepwalkingEvents {
+      id
+      startTime
+      endTime
+      intensity
+    }
+  }
+`;
