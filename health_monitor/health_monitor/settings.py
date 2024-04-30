@@ -11,7 +11,7 @@ https://docs.djangoproject.com/en/5.0/ref/settings/
 """
 
 from pathlib import Path
-
+import os
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
 
@@ -27,7 +27,7 @@ DEBUG = False
 
 ALLOWED_HOSTS = ['localhost', '127.0.0.1','192.168.4.85']
 # In settings.py
-APPEND_SLASH = False
+#APPEND_SLASH = DEBUG
 
 
 # Application definition
@@ -53,10 +53,11 @@ MIDDLEWARE = [
     'django.contrib.auth.middleware.AuthenticationMiddleware',
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
+    'whitenoise.middleware.WhiteNoiseMiddleware',
 ]
 
 CSRF_TRUSTED_ORIGINS = ['https://*.mydomain.com','https://*.127.0.0.1',
-                        'http://*localhost:3000', 'http://localhost:3000']
+                        'http://*localhost:3000', 'http://localhost:8000']
 CORS_ALLOWED_ORIGINS = [
     'http://localhost:3000',  # Allow frontend to make requests
 ]
@@ -69,7 +70,7 @@ ROOT_URLCONF = 'health_monitor.urls'
 TEMPLATES = [
     {
         'BACKEND': 'django.template.backends.django.DjangoTemplates',
-        'DIRS': [],
+        'DIRS': [os.path.join(BASE_DIR, "build")],
         'APP_DIRS': True,
         'OPTIONS': {
             'context_processors': [
@@ -129,9 +130,14 @@ USE_TZ = True
 
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/5.0/howto/static-files/
-
+STATIC_ROOT = os.path.join(BASE_DIR, "staticfiles")
 STATIC_URL = 'static/'
+STATICFILES_DIRS = [
+  # Tell Django where to look for React's static files (css, js)
+  os.path.join(BASE_DIR, "build/static"),
+]
 
+STATICFILES_STORAGE = "whitenoise.storage.CompressedManifestStaticFilesStorage"
 # Default primary key field type
 # https://docs.djangoproject.com/en/5.0/ref/settings/#default-auto-field
 
