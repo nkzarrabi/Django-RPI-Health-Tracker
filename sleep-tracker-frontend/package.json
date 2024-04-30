@@ -12,6 +12,7 @@
     "react": "^18.2.0",
     "react-dom": "^18.2.0",
     "react-scripts": "^3.0.1",
+    "recharts": "^2.12.6",
     "web-vitals": "^2.1.4"
   },
   "scripts": {
@@ -19,7 +20,7 @@
     "build": "react-scripts build",
     "test": "react-scripts test",
     "eject": "react-scripts eject",
-    "relocate": "react-scripts build && rmdir /s /q ..\\health_monitor\\build && move build ..\\health_monitor"
+    "relocate": "react-scripts build && rmdir /s /q ..\\health_monitor\\builds && move build ..\\health_monitor"
   },
   "eslintConfig": {
     "extends": [

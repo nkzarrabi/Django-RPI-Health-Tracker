@@ -15,7 +15,7 @@ Including another URLconf
     2. Add a URL to urlpatterns:  path('blog/', include('blog.urls'))
 """
 from django.contrib import admin
-from django.urls import path, re_path 
+from django.urls import path, re_path, include  
 from graphene_django.views import GraphQLView
 #from sleep_tracker.views import home
 from django.http import HttpResponse
@@ -49,6 +49,7 @@ urlpatterns = [
     path("graphql/", csrf_exempt(CustomGraphQLView.as_view(graphiql=True))),
     path('', render_react),
     #re_path(r"^(?:.*)/?$", render_react),
+    #path('api/', include('health_monitor.urls')),
 ]
 
 if settings.DEBUG:

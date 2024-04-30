@@ -16,6 +16,7 @@ class SleepwalkingEvent(models.Model):
     end_time = models.DateTimeField()
     #duration = models.IntegerField(blank=True, null=True)
     intensity = models.CharField(max_length=255)  # or use another appropriate field type
-
+    #created_at = models.DateTimeField(auto_now_add=True)
+    #updated_at = models.DateTimeField(auto_now=True)
     def __str__(self):
         return f"Sleepwalking from {self.start_time} to {self.end_time}, Intensity: {self.intensity}"
