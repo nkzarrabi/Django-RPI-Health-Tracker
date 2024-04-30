@@ -1,1 +1,1 @@
-web: gunicorn fz.wsgi --log-file -
+web: gunicorn health_monitor.wsgi --log-file -
