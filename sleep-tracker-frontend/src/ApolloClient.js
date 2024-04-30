@@ -6,7 +6,7 @@ const client = new ApolloClient({
     // # Required Fields #
     // -------------------
     // URI - GraphQL Endpoint
-    uri: 'http://localhost:8000/graphql/',
+    uri: 'https://squid-app-jppji.ondigitalocean.app/graphql/',
     // Cache
     cache: new InMemoryCache(),
   

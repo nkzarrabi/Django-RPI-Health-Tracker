@@ -3,7 +3,7 @@ import requests
 import json
 
 
-api_url = 'http://localhost:8000/graphql/'
+api_url = 'https://squid-app-jppji.ondigitalocean.app/graphql/'
 
 def calculate_change(current, previous):
     return abs(current - previous)
