@@ -25,7 +25,7 @@ from django.shortcuts import render
 from django.conf import settings
 from django.conf.urls.static import static
 import logging
-
+from django.shortcuts import redirect
 from graphql import GraphQLError
 from sleep_tracker import views 
 
@@ -54,6 +54,7 @@ urlpatterns = [
     path('admin/', admin.site.urls),
     path("graphql/", csrf_exempt(CustomGraphQLView.as_view(graphiql=True))),
     path('', render_react),
+    re_path(r'^graphql//$', lambda request: redirect('graphql/', permanent=True)),
     #re_path(r"^(?:.*)/?$", render_react),
     #path('api/', include('health_monitor.urls')),
 ]
