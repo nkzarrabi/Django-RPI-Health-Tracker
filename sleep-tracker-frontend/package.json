@@ -20,7 +20,7 @@
     "build": "react-scripts build",
     "test": "react-scripts test",
     "eject": "react-scripts eject",
-    "relocate": "react-scripts build && rmdir /s /q ..\\healths_m\\build && move build ..\\healths_m"
+    "relocate": "react-scripts build && move build ..\\"
   },
   "eslintConfig": {
     "extends": [
