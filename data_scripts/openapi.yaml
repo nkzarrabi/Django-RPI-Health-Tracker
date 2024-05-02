@@ -7,77 +7,6 @@ servers:
   - url: https://rk-8.com/graphql
     description: Main GraphQL API server
 paths:
-  /graphql/:
-    post:
-      operationId: createSleepwalkingEvent
-      summary: Creates a sleepwalking event record using a GraphQL mutation.
-      requestBody:
-        required: true
-        content:
-          application/json:
-            schema:
-              type: object
-              required:
-                - query
-                - variables
-              properties:
-                query:
-                  type: string
-                  description: GraphQL mutation to create a sleepwalking event. This field is auto-filled by the API client and should not
-                    be modified.
-                  example: |
-                    mutation CreateSleepwalkingEvent($startTime: DateTime!, $endTime: DateTime!, $intensity: String!) {
-                      createSleepwalkingEvent(startTime: $startTime, endTime: $endTime, intensity: $intensity) {
-                        sleepwalkingEvent {
-                          id
-                          startTime
-                          endTime
-                          intensity
-                        }
-                      }
-                    }
-                variables:
-                  type: object
-                  required:
-                    - startTime
-                    - endTime
-                    - intensity
-                  properties:
-                    startTime:
-                      type: string
-                      format: date-time
-                      description: Start time of the sleepwalking event
-                    endTime:
-                      type: string
-                      format: date-time
-                      description: End time of the sleepwalking event
-                    intensity:
-                      type: string
-                      description: Intensity of the sleepwalking event
-      responses:
-        "200":
-          description: Successfully created sleepwalking event
-          content:
-            application/json:
-              schema:
-                type: object
-                properties:
-                  data:
-                    type: object
-                    properties:
-                      sleepwalkingEvent:
-                        type: object
-                        properties:
-                          id:
-                            type: string
-                          startTime:
-                            type: string
-                            format: date-time
-                          endTime:
-                            type: string
-                            format: date-time
-                          intensity:
-                            type: string
   /:
     post:
       operationId: createSleepData
@@ -154,3 +83,4 @@ paths:
                             format: date-time
                           sleepScore:
                             type: integer
+
