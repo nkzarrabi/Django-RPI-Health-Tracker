@@ -25,6 +25,8 @@ from django.shortcuts import render
 from django.conf import settings
 from django.conf.urls.static import static
 import logging
+
+from graphql import GraphQLError
 from sleep_tracker import views 
 
 logger = logging.getLogger(__name__)
@@ -34,6 +36,10 @@ class CustomGraphQLView(GraphQLView):
         # Log the incoming request's body for debugging
         logger.info(f"GraphQL request body: {self.request.body}")
         return super().execute_graphql_request(*args, **kwargs)
+    def format_error(self, error):
+        if isinstance(error, GraphQLError):
+            return {'message': str(error), 'locations': error.locations, 'path': error.path}
+        return super().format_error(error)
 
 @require_http_methods(["GET", "POST", "OPTIONS"])
 def graphql_view(request):
