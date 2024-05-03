@@ -6,7 +6,7 @@ const client = new ApolloClient({
     // # Required Fields #
     // -------------------
     // URI - GraphQL Endpoint
-    uri: 'http://192.168.4.85:8000/graphql/',
+    uri: 'https://rk-8.com/graphql/',
     // Cache
     cache: new InMemoryCache(),
   

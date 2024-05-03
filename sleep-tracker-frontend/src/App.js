@@ -1,3 +1,4 @@
+// App.js
 import React from 'react';
 import { ApolloProvider } from '@apollo/client';  // Corrected import
 import client from './ApolloClient';
