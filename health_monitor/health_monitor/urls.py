@@ -54,7 +54,7 @@ urlpatterns = [
     path('admin/', admin.site.urls),
     path("graphql/", csrf_exempt(CustomGraphQLView.as_view(graphiql=True))),
     path('', render_react),
-    re_path(r'^graphql//$', lambda request: redirect('graphql/', permanent=True)),
+    re_path(r'^graphql//$', lambda request: redirect('/', permanent=True)),
     #re_path(r"^(?:.*)/?$", render_react),
     #path('api/', include('health_monitor.urls')),
 ]
