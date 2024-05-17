@@ -1,0 +1,33 @@
+<!-- inventory/templates/inventory/search.html -->
+
+{% extends 'inventory/base.html' %}
+
+{% block title %}Search Results{% endblock %}
+
+{% block content %}
+    <h1>Search Results</h1>
+    <form method="get" action="{% url 'search' %}">
+        {{ form.as_p }}
+        <button type="submit" class="btn btn-primary">Search</button>
+    </form>
+
+    {% if query %}
+        <h2>Results for "{{ query }}"</h2>
+        <p>SKU: {{ form.cleaned_data.sku }}</p>
+        <p>Size: {{ form.cleaned_data.size }}</p>
+        <p>Age: {{ form.cleaned_data.age }}</p>
+        <p>Country of Origin: {{ form.cleaned_data.country_of_origin }}</p>
+        <p>Texture: {{ form.cleaned_data.texture }}</p>
+        <p>Style: {{ form.cleaned_data.style }}</p>
+        <p>Color: {{ form.cleaned_data.color }}</p>
+        <ul>
+            {% for rug in results %}
+                <li>
+                    <a href="{% url 'rug_detail' rug.pk %}">{{ rug.name }} - SKU: {{ rug.sku }}</a>
+                </li>
+            {% empty %}
+                <li>No results found</li>
+            {% endfor %}
+        </ul>
+    {% endif %}
+{% endblock %}

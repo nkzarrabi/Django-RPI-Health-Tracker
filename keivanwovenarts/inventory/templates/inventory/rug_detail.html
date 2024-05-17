@@ -1,0 +1,48 @@
+<!-- inventory/templates/inventory/rug_detail.html -->
+
+{% extends 'inventory/base.html' %}
+
+{% block title %}Rug Detail - Keivan Woven Arts{% endblock %}
+
+{% block content %}
+    <h1>{{ rug.name }}</h1>
+    <div class="card mb-3">
+        <div class="row no-gutters">
+            <div class="col-md-4">
+                {% if photos %}
+                    <img src="{{ photos.0.image.url }}" class="card-img" alt="{{ rug.name }}">
+                {% endif %}
+            </div>
+            <div class="col-md-8">
+                <div class="card-body">
+                    <p class="card-text">SKU: {{ rug.sku }}</p>
+                    <p class="card-text">Size: {{ rug.size }}</p>
+                    <p class="card-text">Age: {{ rug.age }}</p>
+                    <p class="card-text">Country of Origin: {{ rug.country_of_origin }}</p>
+                    <p class="card-text">Texture: {{ rug.texture }}</p>
+                    <p class="card-text">Style: {{ rug.style }}</p>
+                    <p class="card-text">Color: {{ rug.color }}</p>
+                    <p class="card-text">Price: ${{ rug.price }}</p>
+                    <p class="card-text">Description: {{ rug.description }}</p>
+                    <p class="card-text">Available: {{ rug.available }}</p>
+                </div>
+            </div>
+        </div>
+    </div>
+    <h2>Photos</h2>
+    <div class="row">
+        {% for photo in photos %}
+        <div class="col-md-4">
+            <div class="card mb-3">
+                <img src="{{ photo.image.url }}" class="card-img-top" alt="{{ photo.description }}">
+                <div class="card-body">
+                    <p class="card-text">{{ photo.description }}</p>
+                </div>
+            </div>
+        </div>
+        {% endfor %}
+    </div>
+    <a href="{% url 'rug_edit' rug.pk %}" class="btn btn-warning">Edit</a>
+    <a href="{% url 'rug_delete' rug.pk %}" class="btn btn-danger">Delete</a>
+    <a href="{% url 'rug_list' %}" class="btn btn-secondary">Back to Rug List</a>
+{% endblock %}

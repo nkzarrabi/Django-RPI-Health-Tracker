@@ -1,0 +1,14 @@
+<!-- inventory/templates/inventory/home.html -->
+
+{% extends 'inventory/base.html' %}
+
+{% block title %}Home - Keivan Woven Arts{% endblock %}
+
+{% block content %}
+    <div class="jumbotron">
+        <h1 class="display-4">Welcome to Keivan Woven Arts Inventory System</h1>
+        <p class="lead">Manage your rug inventory with ease.</p>
+        <hr class="my-4">
+        <a class="btn btn-primary btn-lg" href="{% url 'rug_list' %}" role="button">View Rugs</a>
+    </div>
+{% endblock %}

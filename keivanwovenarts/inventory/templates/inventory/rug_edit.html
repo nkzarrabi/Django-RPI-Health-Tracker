@@ -1,0 +1,23 @@
+<!-- inventory/templates/inventory/rug_edit.html -->
+
+<!-- inventory/templates/inventory/rug_edit.html -->
+
+{% extends 'inventory/base.html' %}
+
+{% load crispy_forms_tags %}
+
+{% block title %}{% if form.instance.pk %}Edit{% else %}New{% endif %} Rug - Keivan Woven Arts{% endblock %}
+
+{% block content %}
+    <h1>{% if form.instance.pk %}Edit{% else %}New{% endif %} Rug</h1>
+    <form method="post" enctype="multipart/form-data">
+        {% csrf_token %}
+        {{ form|crispy }}
+        {{ formset.management_form }}
+        {% for form in formset %}
+            {{ form|crispy }}
+        {% endfor %}
+        <button type="submit" class="btn btn-primary">Save</button>
+    </form>
+    <a href="{% url 'rug_list' %}" class="btn btn-secondary">Back to Rug List</a>
+{% endblock %}

@@ -1,0 +1,33 @@
+<!-- inventory/templates/inventory/rug_list.html -->
+
+{% extends 'inventory/base.html' %}
+
+{% block title %}Rug List - Keivan Woven Arts{% endblock %}
+
+{% block content %}
+    <h1>Rug List</h1>
+    <a href="{% url 'rug_new' %}" class="btn btn-primary mb-3">Add New Rug</a>
+    <table class="table table-striped">
+        <thead>
+            <tr>
+                <th>Name</th>
+                <th>Size</th>
+                <th>Age</th>
+                <th>Actions</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for rug in rugs %}
+            <tr>
+                <td><a href="{% url 'rug_detail' rug.pk %}">{{ rug.name }}</a></td>
+                <td>{{ rug.size }}</td>
+                <td>{{ rug.age }}</td>
+                <td>
+                    <a href="{% url 'rug_edit' rug.pk %}" class="btn btn-sm btn-warning">Edit</a>
+                    <a href="{% url 'rug_delete' rug.pk %}" class="btn btn-sm btn-danger">Delete</a>
+                </td>
+            </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+{% endblock %}
