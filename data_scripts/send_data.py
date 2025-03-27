@@ -77,7 +77,7 @@ def send_data_to_server(data):
         }
     }
     """
-    response = requests.post(url, json={'query': query, 'variables': data}, headers=headers)
+    response = requests.post(url, json={'query': query, 'variables': data}, headers=headers, timeout=60)
     print(response.text)
 
 # Example usage
